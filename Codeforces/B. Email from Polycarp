@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+#define FastIO                  \
+  ios_base::sync_with_stdio(0); \
+  cin.tie(0);                   \
+  cout.tie(0);
+
+#define nn         '\n'
+#define sp         " "
+
+#define sz(x)      (int)x.size()
+#define all(x)     (x).begin(), (x).end()
+
+using namespace std;
+void solve()
+{
+    int n;
+    cin >> n;
+    while(n-- ) {
+        string s, t;
+        cin >> s >> t;
+        if(sz(s) > sz(t)) {
+            cout << "NO" << nn;
+        }
+        else {
+            if(s == t) {
+                cout << "YES" << nn;
+            }
+            else {
+                bool ok = 2;
+                int i = 0;
+                int j = 0;
+                while(j < sz(t)) {
+                   if(s[i] == t[j]) {
+                    i++;
+                    j++;
+                   }
+                   else if(s[i] != t[j] and t[j] == t[j - 1]) {
+                     j++;
+                   }
+                   else {
+                     ok = false;
+                     break;
+                   }
+               }
+//               cout << "I am i : " << i << nn;
+               if(i < sz(s)) {
+                ok = false;
+               }
+               if(ok) {
+                  cout << "YES" << nn;
+               }
+               else {
+                  cout << "NO" << nn;
+               }
+            }
+        }
+    }
+
+}
+int32_t main()
+{
+    FastIO;
+
+    int test_case = 1;
+//    cin >> test_case;
+    int Case = 1;
+    while(test_case--) {
+//    cout << "Case " << Case << ": ";
+        solve();
+        Case++;
+    }
+
+    return 0;
+}

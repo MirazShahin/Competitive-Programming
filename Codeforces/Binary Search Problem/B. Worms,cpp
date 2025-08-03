@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define FastIO                  \
+  ios_base::sync_with_stdio(0); \
+  cin.tie(0);                   \
+  cout.tie(0);
+#define int long long
+#define vll vector<int>
+#define nn '\n'
+#define gcd(a,b) __gcd(a,b)
+#define lcm(a,b) (a*b) / gcd(a,b)
+
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
+#define sp " "
+#define pi 3.1415926535897932384626433832795
+
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+
+using namespace std;
+ 
+void solve()
+{
+    int number_of_piles;
+    cin >> number_of_piles;
+    vll number_of_worms(number_of_piles);
+    for(int i = 0; i < number_of_piles; i++) cin >> number_of_worms[i];
+
+    vll prefix_sum(number_of_piles);
+    prefix_sum[0] = number_of_worms[0];;
+    for(int i = 1; i < number_of_piles; i++) {
+        prefix_sum[i] = prefix_sum [i - 1] + number_of_worms[i];
+    }
+ 
+    int number_of_juicy_worm;
+    cin >> number_of_juicy_worm;
+    while(number_of_juicy_worm--) {
+        int lebel_of_the_juicy;
+        cin >> lebel_of_the_juicy;
+        auto it = lower_bound(all(prefix_sum), lebel_of_the_juicy);
+        cout << it - prefix_sum.begin() + 1<< nn;
+    }
+
+
+}
+int32_t main()
+{
+    FastIO;
+    solve();
+ 
+
+    return 0;
+}
+ 
